@@ -280,10 +280,10 @@ public class GridCanvas extends JPanel {
             // Perpendicular lane offset keeps opposing-direction cars from overlapping
             int laneOffset = 5;   // pixels away from road center line
             switch (car.heading) {
-                case EAST:  drawY -= laneOffset; break;
-                case WEST:  drawY += laneOffset; break;
-                case SOUTH: drawX += laneOffset; break;
-                case NORTH: drawX -= laneOffset; break;
+                case EAST:  drawY += laneOffset; break;
+                case WEST:  drawY -= laneOffset; break;
+                case SOUTH: drawX -= laneOffset; break;
+                case NORTH: drawX += laneOffset; break;
             }
 
             drawCar(g2, car, drawX, drawY);
