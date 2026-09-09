@@ -9,7 +9,7 @@ import java.util.List;
  * @author John Leckie (original), new class for 2D grid
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
- * A custom JPanel that renders the entire 6x6 road grid graphically.
+ * A custom JPanel that renders the entire 4x4 road grid graphically.
  *
  * What is painted each frame (via a Swing Timer calling repaint()):
  *   1. Gray background
@@ -25,7 +25,7 @@ import java.util.List;
  * so it always reflects the current simulation state.
  *
  * Size: GRID_SIZE * CELL_SIZE + 2 * GRID_OFFSET in each dimension.
- * With GRID_SIZE=6, CELL_SIZE=100, GRID_OFFSET=50 → 700 × 700 pixels.
+ * With GRID_SIZE=4, CELL_SIZE=100, GRID_OFFSET=50 → 500 × 500 pixels.
  */
 public class GridCanvas extends JPanel {
 
@@ -277,13 +277,15 @@ public class GridCanvas extends JPanel {
             int drawX = baseX + car.pixelOffsetX;
             int drawY = baseY + car.pixelOffsetY;
 
-            // Perpendicular lane offset keeps opposing-direction cars from overlapping
+            // Perpendicular lane offset keeps opposing-direction cars from overlapping.
+            // Offsets are chosen so each car sits in the right-hand lane relative to
+            // its direction of travel (right-hand traffic, e.g. driving in the US).
             int laneOffset = 5;   // pixels away from road center line
             switch (car.heading) {
-                case EAST:  drawY -= laneOffset; break;
-                case WEST:  drawY += laneOffset; break;
-                case SOUTH: drawX += laneOffset; break;
-                case NORTH: drawX -= laneOffset; break;
+                case EAST:  drawY += laneOffset; break;
+                case WEST:  drawY -= laneOffset; break;
+                case SOUTH: drawX -= laneOffset; break;
+                case NORTH: drawX += laneOffset; break;
             }
 
             drawCar(g2, car, drawX, drawY);

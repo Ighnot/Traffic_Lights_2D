@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author John Leckie (original CarSpeedAndPosition), refactored for 2D grid
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
- * The primary Runnable class governing each car's behavior on the 6x6 grid.
+ * The primary Runnable class governing each car's behavior on the 4x4 grid.
  *
  * Responsibilities:
  *   1. Move the car smoothly between intersections using sub-cell pixel offsets.
@@ -74,7 +74,7 @@ public class CarMovement implements Runnable {
         this.car      = car;
         this.isStopped = false;
 
-        // Random starting position anywhere on the 6x6 grid
+        // Random starting position anywhere on the 4x4 grid
         row = ThreadLocalRandom.current().nextInt(0, GridPosition.GRID_SIZE);
         col = ThreadLocalRandom.current().nextInt(0, GridPosition.GRID_SIZE);
 

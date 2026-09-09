@@ -8,7 +8,7 @@ import javax.swing.border.LineBorder;
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
  * Represents one car in the simulation. A Car tracks its own:
- *   - Grid position (row, col) on the 6x6 intersection grid
+ *   - Grid position (row, col) on the 4x4 intersection grid
  *   - Sub-cell pixel offset so it appears to move smoothly between intersections
  *   - Current heading (Direction: NORTH, EAST, SOUTH, WEST)
  *   - Speed, status string, and pause/stop flags

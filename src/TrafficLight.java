@@ -6,7 +6,7 @@ import javax.swing.*;
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
  * Represents one traffic light at a specific grid intersection.
- * Each TrafficLight knows its (row, col) position on the 6x6 grid,
+ * Each TrafficLight knows its (row, col) position on the 4x4 grid,
  * its current color, and whether the simulation is paused or stopped.
  *
  * The TrafficLight extends JLabel so it can display its light icon
