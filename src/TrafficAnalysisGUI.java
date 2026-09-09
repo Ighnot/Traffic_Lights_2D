@@ -148,7 +148,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
 
         // ---- EAST: CarInfoPane (scrollable car table) ----
         carInfoPane = new CarInfoPane();
-        carInfoPane.setPreferredSize(new Dimension(420, 0));
+        carInfoPane.setPreferredSize(new Dimension(500, 0));
         contentPane.add(carInfoPane, BorderLayout.EAST);
 
         // ---- SOUTH: button bar ----
@@ -259,7 +259,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
         // Rebuild car info pane (removes old cars)
         contentPane.remove(carInfoPane);
         carInfoPane = new CarInfoPane();
-        carInfoPane.setPreferredSize(new Dimension(420, 0));
+        carInfoPane.setPreferredSize(new Dimension(500, 0));
         contentPane.add(carInfoPane, BorderLayout.EAST);
 
         // Rebuild the light grid and canvas

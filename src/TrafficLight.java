@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class TrafficLight extends JLabel {
 
-    /** Human-readable name, e.g. "Intersection (2,3)". */
+    /** Human-readable name, e.g. "(2, 3)". */
     private final String name;
 
     /** Grid position of this intersection. */
@@ -40,7 +40,7 @@ public class TrafficLight extends JLabel {
      */
     public TrafficLight(int row, int col) {
         this.gridPos = new GridPosition(row, col);
-        this.name = "Intersection " + gridPos.toString();
+        this.name = gridPos.toString();
         this.color = "red";   // safe default before TrafficLightDisplay sets it
         this.isPaused = false;
         this.isStopped = false;

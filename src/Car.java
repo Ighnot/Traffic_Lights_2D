@@ -89,7 +89,7 @@ public class Car {
     // direct update is retained here for consistency with the original design.
     // -----------------------------------------------------------------------
 
-    private final JPanel infoPane;
+    private final CarInfoPane infoPane;
     private JTextField txtName, txtStatus, txtSpeed, txtPosition, txtDirection;
 
     // -----------------------------------------------------------------------
@@ -102,9 +102,9 @@ public class Car {
      * components, and starts the CarMovement thread.
      *
      * @param carCount  (int) creation-order index, used for naming and color
-     * @param carInfoPane (JPanel) shared panel that holds all car info rows
+     * @param carInfoPane (CarInfoPane) shared pane that holds all car info rows
      */
-    public Car(int carCount, JPanel carInfoPane) {
+    public Car(int carCount, CarInfoPane carInfoPane) {
         this.carName  = "Car " + carCount;
         this.carColor = CAR_COLORS[(carCount - 1) % CAR_COLORS.length];
         this.infoPane = carInfoPane;
@@ -134,9 +134,9 @@ public class Car {
     // -----------------------------------------------------------------------
 
     /**
-     * addInfoRow - creates and appends a row of JTextFields to the shared
-     * carInfoPane. Each field corresponds to one column in the car table:
-     * Name | Status | Speed | Position | Direction.
+     * addInfoRow - creates one row of JTextFields and hands it to the shared
+     * carInfoPane, which places it at a fixed column width. Cells correspond
+     * to one column in the car table: Name | Status | Speed | Position | Direction.
      */
     private void addInfoRow() {
         LineBorder border = new LineBorder(Color.BLACK);
@@ -147,35 +147,32 @@ public class Car {
         txtName.setBackground(carColor.brighter());
         txtName.setEditable(false);
         txtName.setBorder(border);
-        infoPane.add(txtName);
 
         // Status
         txtStatus = new JTextField(status);
         txtStatus.setHorizontalAlignment(SwingConstants.CENTER);
         txtStatus.setEditable(false);
         txtStatus.setBorder(border);
-        infoPane.add(txtStatus);
 
         // Speed
         txtSpeed = new JTextField("0 km/h");
         txtSpeed.setHorizontalAlignment(SwingConstants.CENTER);
         txtSpeed.setEditable(false);
         txtSpeed.setBorder(border);
-        infoPane.add(txtSpeed);
 
         // Grid position
         txtPosition = new JTextField("(0,0)");
         txtPosition.setHorizontalAlignment(SwingConstants.CENTER);
         txtPosition.setEditable(false);
         txtPosition.setBorder(border);
-        infoPane.add(txtPosition);
 
         // Direction / heading
         txtDirection = new JTextField(heading.toArrow());
         txtDirection.setHorizontalAlignment(SwingConstants.CENTER);
         txtDirection.setEditable(false);
         txtDirection.setBorder(border);
-        infoPane.add(txtDirection);
+
+        infoPane.addRow(new JTextField[] {txtName, txtStatus, txtSpeed, txtPosition, txtDirection});
     }
 
     // -----------------------------------------------------------------------
