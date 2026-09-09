@@ -8,10 +8,10 @@
 
 | Feature | Original | 2D Grid Edition |
 |---|---|---|
-| Road layout | 1D linear road | 6×6 intersection grid (36 lights) |
+| Road layout | 1D linear road | 4×4 intersection grid (16 lights) |
 | Car navigation | Forward only, wraps at end | Random turns at each intersection (left / straight / right) |
 | Visualization | Text fields only | Animated graphical canvas + text table |
-| Intersections | Up to 7 | Fixed 36 (6×6), all threaded |
+| Intersections | Up to 7 | Fixed 16 (4×4), all threaded |
 | Traffic light display | PNG icons in a row | Colored circles on the canvas + optional icons |
 | Car representation | Text only | Colored rectangles with direction arrows |
 | Two-lane roads | No | Yes (lane offset by direction) |
@@ -90,7 +90,7 @@ To use your own graphics:
 ## How It Works
 
 ### Grid
-- 6×6 = 36 intersections, each with a `TrafficLight` and a `TrafficLightDisplay` thread.
+- 4×4 = 16 intersections, each with a `TrafficLight` and a `TrafficLightDisplay` thread.
 - Light timing is randomized per intersection (green: 10–16 s, red: 6–10 s, yellow: 3 s).
 - Intersections are 100 pixels apart on the canvas.
 

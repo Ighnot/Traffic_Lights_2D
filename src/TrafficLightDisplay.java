@@ -11,8 +11,8 @@ import javax.swing.*;
  * A Runnable that controls the color-cycling behavior of one TrafficLight.
  * Each intersection gets its own TrafficLightDisplay thread.
  *
- * Light timing is randomized per instance so that the 36 lights on the
- * 6x6 grid are not all in sync with each other. This makes the simulation
+ * Light timing is randomized per instance so that the 16 lights on the
+ * 4x4 grid are not all in sync with each other. This makes the simulation
  * more realistic and prevents all cars from stopping or moving together.
  *
  * Color cycle: GREEN → YELLOW → RED → GREEN (repeating)
@@ -90,7 +90,7 @@ public class TrafficLightDisplay implements Runnable {
         redWaitTime   = ThreadLocalRandom.current().nextInt(6000, 10000);
         greenWaitTime = ThreadLocalRandom.current().nextInt(10000, 16000);
 
-        // Pick a random starting color to stagger the 36 lights
+        // Pick a random starting color to stagger the 16 lights
         setLightColor();
         setLightImage();
     }

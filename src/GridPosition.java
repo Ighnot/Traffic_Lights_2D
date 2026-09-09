@@ -3,8 +3,8 @@
  * @author John Leckie (original), refactored for 2D grid
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
- * Immutable value class representing a cell position on the 6x6
- * intersection grid. Row and column are both 0-based (0..5).
+ * Immutable value class representing a cell position on the 4x4
+ * intersection grid. Row and column are both 0-based (0..3).
  * Pixel coordinates for rendering are computed here as well.
  */
 public class GridPosition {
@@ -53,7 +53,7 @@ public class GridPosition {
     }
 
     /**
-     * isValid - checks whether this position lies within the 6x6 grid.
+     * isValid - checks whether this position lies within the 4x4 grid.
      *
      * @return true if both row and col are within [0, GRID_SIZE-1]
      */

@@ -6,7 +6,7 @@ import javax.swing.*;
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
  * Represents one traffic light at a specific grid intersection.
- * Each TrafficLight knows its (row, col) position on the 6x6 grid,
+ * Each TrafficLight knows its (row, col) position on the 4x4 grid,
  * its current color, and whether the simulation is paused or stopped.
  *
  * The TrafficLight extends JLabel so it can display its light icon
@@ -18,7 +18,7 @@ import javax.swing.*;
  */
 public class TrafficLight extends JLabel {
 
-    /** Human-readable name, e.g. "Intersection (2,3)". */
+    /** Human-readable name, e.g. "(2, 3)". */
     private final String name;
 
     /** Grid position of this intersection. */
@@ -40,7 +40,7 @@ public class TrafficLight extends JLabel {
      */
     public TrafficLight(int row, int col) {
         this.gridPos = new GridPosition(row, col);
-        this.name = "Intersection " + gridPos.toString();
+        this.name = gridPos.toString();
         this.color = "red";   // safe default before TrafficLightDisplay sets it
         this.isPaused = false;
         this.isStopped = false;

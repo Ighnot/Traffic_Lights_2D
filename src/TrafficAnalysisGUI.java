@@ -10,12 +10,12 @@ import java.util.ArrayList;
  * CMSC335, Dec 2023, Project 3 — 2D Grid Edition
  *
  * Main class and entry point for the Traffic Flow and Intersection Simulator.
- * Manages a 6x6 grid of intersections (36 total), each with its own
+ * Manages a 4x4 grid of intersections (16 total), each with its own
  * TrafficLight and TrafficLightDisplay thread.
  *
  * Layout (BorderLayout on the root content pane):
  *   NORTH  — title bar + system clock
- *   CENTER — GridCanvas (the animated 6x6 road grid)
+ *   CENTER — GridCanvas (the animated 4x4 road grid)
  *   EAST   — CarInfoPane (scrollable table of car data)
  *   SOUTH  — button bar (Start / Stop / Pause / Continue / Add Car)
  *
@@ -25,7 +25,7 @@ import java.util.ArrayList;
  *
  * Thread model:
  *   - 1 CurrentTime thread (daemon)
- *   - 36 TrafficLightDisplay threads (one per intersection, daemon)
+ *   - 16 TrafficLightDisplay threads (one per intersection, daemon)
  *   - N CarMovement threads (one per car, daemon) — N starts at 3, max 6
  *
  * All worker threads are daemon threads so they exit cleanly when the
@@ -89,7 +89,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
 
     /**
      * TrafficAnalysisGUI - default constructor.
-     * Builds the Swing UI, initializes the 6x6 intersection grid,
+     * Builds the Swing UI, initializes the 4x4 intersection grid,
      * and starts the clock thread.
      */
     public TrafficAnalysisGUI() {
@@ -108,9 +108,14 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
      * rebuild after a stop.
      */
     private void initComponents() {
-        setTitle("Traffic Flow and Intersection Simulator — 6×6 Grid");
+        setTitle("Traffic Flow and Intersection Simulator — 4×4 Grid");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+
+        java.net.URL iconUrl = TrafficAnalysisGUI.class.getResource("resources/TrafficLight.png");
+        if (iconUrl != null) {
+            setIconImage(new ImageIcon(iconUrl).getImage());
+        }
 
         // Root content pane — BorderLayout
         contentPane = new JPanel(new BorderLayout(4, 4));
@@ -122,7 +127,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
         topBar.setBackground(new Color(20, 20, 20));
         topBar.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
 
-        lblTitle = new JLabel("Traffic Flow & Intersection Simulator — 6×6 Grid");
+        lblTitle = new JLabel("Traffic Flow & Intersection Simulator — 4×4 Grid");
         lblTitle.setForeground(Color.WHITE);
         lblTitle.setFont(new Font("SansSerif", Font.BOLD, 15));
         topBar.add(lblTitle, BorderLayout.WEST);
@@ -143,7 +148,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
 
         // ---- EAST: CarInfoPane (scrollable car table) ----
         carInfoPane = new CarInfoPane();
-        carInfoPane.setPreferredSize(new Dimension(420, 0));
+        carInfoPane.setPreferredSize(new Dimension(500, 0));
         contentPane.add(carInfoPane, BorderLayout.EAST);
 
         // ---- SOUTH: button bar ----
@@ -190,7 +195,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
     // -----------------------------------------------------------------------
 
     /**
-     * initGrid - creates all 36 TrafficLight objects, starts their display
+     * initGrid - creates all 16 TrafficLight objects, starts their display
      * threads, builds the GridCanvas, and adds it to the CENTER of the layout.
      *
      * Called once on startup and again by startSim() after a stop/restart.
@@ -254,7 +259,7 @@ public class TrafficAnalysisGUI extends JFrame implements ActionListener {
         // Rebuild car info pane (removes old cars)
         contentPane.remove(carInfoPane);
         carInfoPane = new CarInfoPane();
-        carInfoPane.setPreferredSize(new Dimension(420, 0));
+        carInfoPane.setPreferredSize(new Dimension(500, 0));
         contentPane.add(carInfoPane, BorderLayout.EAST);
 
         // Rebuild the light grid and canvas
